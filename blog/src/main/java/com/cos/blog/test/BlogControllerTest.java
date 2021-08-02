@@ -9,8 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class BlogControllerTest {
 
     @GetMapping("/test/hello")
+    //파일리턴 기본경로: src/main/resources/static
+    //리턴명: /home.html
+    //풀경로: src/main/resources/static/home.html
     public String hello(){
         return "<h1>hello spring boot</h1>";
     }
 
+
+    @GetMapping("/temp/jsp")
+    public String tempJsp(){
+        return "/test.jsp";
+    }
 }
