@@ -10,6 +10,7 @@ import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -31,9 +32,12 @@ public class Board {
     @ColumnDefault("0")//숫자로 사용
     private int count; //조회수
 
-    @ManyToOne//Board가 Many고 User가 one이다.
+    @ManyToOne(fetch = FetchType.EAGER)//Board가 Many고 User가 one이다.
     @JoinColumn(name = "userId")
     private User user; // DB는 오브젝트를 저장할 수 없다. FK, 자바는 오브젝트 저장할 수 있다.
+
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY) // mappedBy 연관관계의 주인이 아니다.(난 FK가 아니에요) DB에 컬럼을 만들지 마세요.
+    private List<Reply> reply;
 
     @CreationTimestamp//데이터가 insert될 때 자동으로 현재시간이 들어감
     private Timestamp createDate;

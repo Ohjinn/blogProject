@@ -31,10 +31,6 @@ public class Reply {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToMany
-    @JoinColumn(name = "replyId")
-    private List<Reply> reply;
-
     @CreationTimestamp
     private Timestamp createDate;
 }
