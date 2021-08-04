@@ -27,6 +27,12 @@ public class DummyControllerTest {
     //id전달에 id에 대한 데이터가 없으면 insert
     //email, password
 
+    @DeleteMapping("/dummy/user/{id}")
+    public String delete(@PathVariable int id){
+        userRepository.deleteById(id);
+
+        return "삭제되었습니다. id:" + id;
+    }
 
     @Transactional//함수 종료시에 자동 commit 하면서 변경됐으면 flush(update)를 수행, 변경감지, 수정 -> 더티체킹
     @PutMapping("/dummy/user/{id}")
