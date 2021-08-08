@@ -25,11 +25,10 @@
 			<artifactId>spring-security-taglibs</artifactId>
 		</dependency>-->
 
-		<!--&lt;!&ndash; JSP 템플릿 엔진 &ndash;&gt;
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>-->
+		</dependency>
 
 		<!-- JSTL -->
 		<dependency>
