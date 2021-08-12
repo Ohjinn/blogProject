@@ -25,7 +25,7 @@ public class User {
     private int id; //시퀀스, auto_increment하는 전략을 가져갈 것이다.
 
     @Column(nullable = false, length = 30, unique = true)
-    private String userName; //아이디
+    private String username; //아이디
 
     @Column(nullable = false, length = 100) //=>해쉬로 변경해서 비밀번호 암호화
     private String password;

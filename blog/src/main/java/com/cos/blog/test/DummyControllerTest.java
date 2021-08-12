@@ -122,7 +122,7 @@ public class DummyControllerTest {
     @PostMapping("/dummy/join")//회원가입 Insert를 위한 postMapping
     public String join(User user){ //key = value형의 데이터를 받는다.(약속된 규칙)
         System.out.println("ID = " + user.getId());
-        System.out.println("username = " + user.getUserName());
+        System.out.println("username = " + user.getUsername());
         System.out.println("password = " + user.getPassword());
         System.out.println("email = " + user.getEmail());
         System.out.println("role = " + user.getRole());

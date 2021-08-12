@@ -4,8 +4,8 @@ import com.cos.blog.model.User;
 import com.cos.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 
 @Service//spring이 컴포넌트 스캔을 통해 bean에 등록. IoC를 해준다.
 public class UserService {
@@ -14,14 +14,12 @@ public class UserService {
     private UserRepository userRepository;
 
     @Transactional//여러개의 트랜젝션이 모여서 하나의 서비스가 될 수 있기 때문에, 또한 대부분 그렇기 때문에
-    public int 회원가입(User user){
-        try{
-            userRepository.save(user);
-            return 1;
-        }catch (Exception e){
-            e.printStackTrace();
-            System.out.println("UserService : 회원가입() : " + e.getMessage());
-        }
-        return -1;
+    public void 회원가입(User user){
+        userRepository.save(user);
+    }
+
+    @Transactional(readOnly = true)//Select할 때 트랜잭션 시작, 서비스 종료시에 트랜잭션 종료(정합성)
+    public User 로그인(User user){
+        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
     }
 }
