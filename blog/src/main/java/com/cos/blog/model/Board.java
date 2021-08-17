@@ -29,7 +29,6 @@ public class Board {
     @Lob // 대용량 데이터 사용시
     private String content; //섬머노트 라이브러리 쓸거라 <html>태그가 섞여들어가서 data가 많이 필요함.
 
-    @ColumnDefault("0")//숫자로 사용
     private int count; //조회수
 
     @ManyToOne(fetch = FetchType.EAGER)//Board가 Many고 User가 one이다.
