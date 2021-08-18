@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,7 @@ public class UserApiController {
     @Autowired
     private BCryptPasswordEncoder encode;
 
-    @PostMapping("/auth/joinProc")
+    @PostMapping("/auth/joinProc")//JSON데이터를 받기 위한 RequestBody
     public ResponseDto<Integer> save(@RequestBody User user){//username, password, email 세 개만 받는다.
         System.out.println("UserApiController : save 호출됨");
         //실제로 DB에 insert를 하고 아래에서 return 하면 된다.
@@ -30,6 +31,13 @@ public class UserApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);//자바 오브젝트를 JSON 으로 변환해서 리턴 (Jackson)
     }
 
+    @PutMapping("/user")//JSON데이터를 받기 위한 RequestBody
+    public ResponseDto<Integer> update(@RequestBody User user){//key = value, x-www-form-urlencoded받으려면 필요없다.
+        userService.회원수정(user);
+        //여기서는 트랜잭션이 종료되기 때문에 DB에 값은 변경이 됐다.
+        //하지만 세션값은 변경되지 않은 상태기 때문에 우리가 직접 세션값을 변경해 줘야 한다.
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
 
 //    전통적인 방식
 //    @PostMapping("/api/user/login")
