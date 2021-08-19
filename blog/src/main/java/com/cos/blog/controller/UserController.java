@@ -24,4 +24,12 @@ public class UserController {
     public String updateForm(){
         return "user/updateForm";
     }
+
+    /*
+    @GetMapping("/user/updateForm")
+    public String updateForm(@AuthenticationPrincipal PrincipalDetail principal){//이렇게 적으면 Authentication 객체를 가져오는 것이다.
+        return "user/updateForm";
+    }
+    */
+
 }

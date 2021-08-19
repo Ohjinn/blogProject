@@ -4,6 +4,10 @@ import com.cos.blog.model.RoleType;
 import com.cos.blog.model.User;
 import com.cos.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,5 +49,6 @@ public class UserService {
         persistence.setEmail(user.getEmail());
         //회원 수정 함수 종료시 = 서비스 종료시 = 트랜잭션 종료 = commit이 자동으로 된다.
         //영속화된 persistance 객체의 변화가 감지되면 더티체킹이 돼서 변화된 것들을 update문을 날려준다.
+
     }
 }
