@@ -29,9 +29,12 @@ let index = {
             contentType:"application/json; charset=utf-8",//body data가 어떤 타입인지
             dataType:"json"//요청을 서버로 해서 응답이 왔을 때 기본적이 모든것이 String(생긴게 json 이라면)=> javascript 오브젝트로 변경해준다. 딱히 없어도 된다.
         }).done(function(resp){
-            alert("회원가입이 완료되었습니다.");
-            console.log(resp);
-            location.href = "/";
+            if(resp.status == 500){
+                alert("회원가입에 실패했습니다.");
+            }else{
+                alert("회원가입이 완료되었습니다.");
+                location.href = "/";
+            }
         }).fail(function(error){
             alert(JSON.stringify(error));
         });

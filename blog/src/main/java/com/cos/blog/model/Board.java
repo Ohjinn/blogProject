@@ -11,6 +11,7 @@ import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -36,11 +37,11 @@ public class Board {
     @JoinColumn(name = "userId")
     private User user; // DB는 오브젝트를 저장할 수 없다. FK, 자바는 오브젝트 저장할 수 있다.
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER) // mappedBy 연관관계의 주인이 아니다.(난 FK가 아니에요) DB에 컬럼을 만들지 마세요.\
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) // mappedBy 연관관계의 주인이 아니다.(난 FK가 아니에요) DB에 컬럼을 만들지 마세요.\
     @JsonIgnoreProperties({"board"})
     @OrderBy("id desc")//replies를 내림차순으로 정렬
     private List<Reply> replies;//db에는 없지만 board를 셀렉트할때 들고온다.
 
     @CreationTimestamp//데이터가 insert될 때 자동으로 현재시간이 들어감
-    private Timestamp createDate;
+    private LocalDateTime createDate;
 }
