@@ -1,5 +1,6 @@
 package com.cos.blog.model;
 
+import com.cos.blog.dto.ReplySaveRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -32,6 +34,8 @@ public class Reply {
     private User user;
 
     @CreationTimestamp
-    private Timestamp createDate;
+    private LocalDateTime createDate;
+
+
 }
 

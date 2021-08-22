@@ -20,7 +20,7 @@ spring:
     password: cos1234
 
   jpa:
-    open-in-view: true
+    open-in-view: false
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
@@ -33,3 +33,6 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+
+cos:
+  key: cos1234
